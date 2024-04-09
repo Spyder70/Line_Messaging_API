@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import LineSDK from 'line-sdk-react';
+
+const client = new LineSDK({
+  channelID: 'YOUR_CHANNEL_ID',
+  channelSecret: 'YOUR_CHANNEL_SECRET',
+  accessToken: 'YOUR_ACCESS_TOKEN',
+});
+
+const App = () => {
+  const [message, setMessage] = useState('');
+
+  const sendMessage = () => {
+    client.sendMessage({
+      to: 'YOUR_USER_ID',
+      message: message,
+    });
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter your message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <button onClick={sendMessage}>Send Message</button>
+    </div>
+  );
+};
+
+export default App;
